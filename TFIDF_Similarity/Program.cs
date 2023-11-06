@@ -10,8 +10,8 @@ namespace TFIDF_Similarity
         {
             string[] documents =
            {
-                "北京天安门dgs",
-                "北京天安门发到这个fsfsf中的发个地址发给的发展郭德纲"
+                "我喜欢北京的天安门和天空天,sad234;/';,/,/安门天安门天安门",
+                "北京北京北京北京北京天安3,'/,门阳光和阳光垃圾"
             };
 
             // Apply TF*IDF to the documents and get the resulting vectors.
