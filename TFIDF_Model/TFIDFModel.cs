@@ -353,7 +353,7 @@ namespace TFIDF_Model
 
             // 使用空字符串替换所有匹配的标点符号
             string result = Regex.Replace(text, pattern, "");
-            string v = Regex.Replace(result, @"[A-Za-z]", "");
+            string v = Regex.Replace(result, @"[A-Za-z0-9]", "");
             var segmenter = new JiebaSegmenter();
             IEnumerable<string> enumerable = segmenter.Cut(v);
             
