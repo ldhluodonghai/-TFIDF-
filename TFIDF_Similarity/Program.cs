@@ -36,7 +36,7 @@ namespace TFIDF_Similarity
 
             double v = CalculateCosineSimilarity(vectorOne, vectorTwo);
             Console.WriteLine(v);
-            string text = "我爱北,./;'京天安门";
+           /* string text = "我爱北,./;'京天安门";
             var segmenter = new JiebaSegmenter();
             var words = segmenter.Cut(text);
             string[] vs = TFIDF_Model.TFIDFModel.ChineseTokenize(text);
@@ -49,7 +49,7 @@ namespace TFIDF_Similarity
             double[] y = { 2, 4, 6, 8, 10 };
 
             double correlation = CalculatePearsonCorrelation(x, y);
-            Console.WriteLine($"皮尔逊相关系数: {correlation}");
+            Console.WriteLine($"皮尔逊相关系数: {correlation}");*/
         }
 
         /// <summary>
