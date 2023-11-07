@@ -10,7 +10,7 @@ namespace TFIDF_Similarity
         {
             string[] documents =
            {
-                "我喜欢北京的天安门和天空天,sad234;sdf/';,/,/安门天安门天安门",
+                "我喜欢北京的天安门和sdfsd天空天,sad234;sdf/';,/,/安门天安门天安门",
                 "北京北京北京北京北京天安3,'/,门阳光和阳光垃圾"
             };
 
