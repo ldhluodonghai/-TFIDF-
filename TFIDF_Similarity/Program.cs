@@ -1,5 +1,6 @@
 ﻿using JiebaNet.Segmenter;
 using System;
+using System.Linq;
 using TFIDF_Model;
 
 namespace TFIDF_Similarity
@@ -44,7 +45,19 @@ namespace TFIDF_Similarity
                 Console.WriteLine(word);
             }
             Console.WriteLine(string.Join(" ", words));
+            double[] x = { 1, 2, 3, 4, 5 };
+            double[] y = { 2, 4, 6, 8, 10 };
+
+            double correlation = CalculatePearsonCorrelation(x, y);
+            Console.WriteLine($"皮尔逊相关系数: {correlation}");
         }
+
+        /// <summary>
+        /// 余弦相似度计算
+        /// </summary>
+        /// <param name="vectorOne"></param>
+        /// <param name="vectorTwo"></param>
+        /// <returns></returns>
         static double CalculateCosineSimilarity(double[] vectorOne, double[] vectorTwo)
         {
             //判断向量组维度是否相等
@@ -73,6 +86,47 @@ namespace TFIDF_Similarity
 
             //返回余弦相识度
             return dotProduct / (Math.Sqrt(normVector1) * Math.Sqrt(normVector2));
+        }
+
+        /// <summary>
+        /// 皮尔逊相关系数计算
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        static double CalculatePearsonCorrelation(double[] x, double[] y)
+        {
+            if (x.Length != y.Length)
+            {
+                throw new ArgumentException("输入数组的长度不一致");
+            }
+
+            int n = x.Length;
+
+            // 计算x和y的平均值
+            double avgX = x.Average();
+            double avgY = y.Average();
+
+            // 计算x和y的差值乘积之和
+            double sumProduct = 0;
+            for (int i = 0; i < n; i++)
+            {
+                sumProduct += (x[i] - avgX) * (y[i] - avgY);
+            }
+
+            // 计算x和y的差值的平方和
+            double sumXSquare = 0;
+            double sumYSquare = 0;
+            for (int i = 0; i < n; i++)
+            {
+                sumXSquare += Math.Pow(x[i] - avgX, 2);
+                sumYSquare += Math.Pow(y[i] - avgY, 2);
+            }
+
+            // 计算皮尔逊相关系数
+            double correlation = sumProduct / Math.Sqrt(sumXSquare * sumYSquare);
+
+            return correlation;
         }
     }
 }
