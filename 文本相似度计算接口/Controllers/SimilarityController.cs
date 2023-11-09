@@ -1,18 +1,23 @@
-﻿using JiebaNet.Segmenter;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using TFIDF_Model;
 
-namespace TFIDF_Similarity
+namespace 文本相似度计算接口.Controllers
 {
-    class Program
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class SimilarityController : ControllerBase
     {
-        static void Main(string[] args)
+        [HttpPost]
+        public  double GetSimilarityValue(string text1,string text2)
         {
             string[] documents =
            {
-                "其居民楼旁有树木影响其采光，当时表示有美丽家园改造会综合考虑，但至今树木没有修剪还从其他地方移植了一棵树过来导致更加影响采光。",
-                "原先的便民服务中心近期在进行装修施工，10月6日晚21:15左右仍在施工，噪音扰民情况严重。市民现诉求管理部门协调该处调整施工时间，夜间20:00之后，以及节假日不要进行施工。"
+                text1,text2
             };
 
             // Apply TF*IDF to the documents and get the resulting vectors.
@@ -35,23 +40,24 @@ namespace TFIDF_Similarity
             double[] vectorTwo = inputs[1];
 
             double v = CalculateCosineSimilarity(vectorOne, vectorTwo);
+            
             Console.WriteLine(v);
-           /* string text = "我爱北,./;'京天安门";
-            var segmenter = new JiebaSegmenter();
-            var words = segmenter.Cut(text);
-            string[] vs = TFIDF_Model.TFIDFModel.ChineseTokenize(text);
-            foreach (var word in words)
-            {
-                Console.WriteLine(word);
-            }
-            Console.WriteLine(string.Join(" ", words));
-            double[] x = { 1, 2, 3, 4, 5 };
-            double[] y = { 2, 4, 6, 8, 10 };
+            return v;
+            /* string text = "我爱北,./;'京天安门";
+             var segmenter = new JiebaSegmenter();
+             var words = segmenter.Cut(text);
+             string[] vs = TFIDF_Model.TFIDFModel.ChineseTokenize(text);
+             foreach (var word in words)
+             {
+                 Console.WriteLine(word);
+             }
+             Console.WriteLine(string.Join(" ", words));
+             double[] x = { 1, 2, 3, 4, 5 };
+             double[] y = { 2, 4, 6, 8, 10 };
 
-            double correlation = CalculatePearsonCorrelation(x, y);
-            Console.WriteLine($"皮尔逊相关系数: {correlation}");*/
+             double correlation = CalculatePearsonCorrelation(x, y);
+             Console.WriteLine($"皮尔逊相关系数: {correlation}");*/
         }
-
         /// <summary>
         /// 余弦相似度计算
         /// </summary>

@@ -237,7 +237,7 @@ namespace TFIDF_Model
         /// 中文解析和标记文档列表，返回词汇表。
         /// </summary>
         /// <param name="docs">string[]</param>
-        /// <param name="stemmedDocs">字符串列表的列表</param>
+        /// <param name="stemmedDocs">词汇列表的列表</param>
         /// <returns>词汇的字符串的列表</returns>
         private static List<string> GetVocabularyChina(string[] docs, out List<List<string>> stemmedDocs, int vocabularyThreshold)
         {
